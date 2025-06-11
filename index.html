@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能软件资产全周期管理解决方案</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f5ff 0%, #e6f0fa 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            text-align: center;
+            padding: 40px 0 50px;
+            position: relative;
+        }
+        
+        .main-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #1a3a6e;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .main-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 5px;
+            background: linear-gradient(90deg, #3498db, #d4af37);
+            border-radius: 3px;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            color: #4a6582;
+            max-width: 800px;
+            margin: 30px auto 0;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+        
+        /* 网格布局 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 35px 30px;
+            box-shadow: 0 12px 30px rgba(0, 0, 100, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border-top: 4px solid #3498db;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 18px 40px rgba(0, 50, 150, 0.15);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #d4af37);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+        
+        .card-icon {
+            width: 75px;
+            height: 75px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 32px;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .card-icon {
+            transform: scale(1.1);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1a3a6e;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #d4af37;
+            border-radius: 2px;
+        }
+        
+        .card-description {
+            font-size: 1.05rem;
+            color: #555;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+        
+        .card-description span {
+            display: block;
+            margin-top: 15px;
+            font-weight: 500;
+            color: #333;
+            padding-left: 10px;
+            border-left: 3px solid #3498db;
+        }
+        
+        /* 功能亮点部分 */
+        .highlights-section {
+            background: linear-gradient(135deg, #1a3a6e 0%, #2c5282 100%);
+            border-radius: 16px;
+            padding: 50px 40px;
+            margin: 60px 0;
+            color: white;
+            box-shadow: 0 15px 35px rgba(0, 0, 100, 0.2);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #d4af37;
+            border-radius: 2px;
+        }
+        
+        .highlight-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .highlight-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 25px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .highlight-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #d4af37;
+            display: flex;
+            align-items: center;
+        }
+        
+        .highlight-card h3 i {
+            margin-right: 12px;
+            font-size: 1.8rem;
+        }
+        
+        .highlight-list {
+            list-style: none;
+        }
+        
+        .highlight-list li {
+            padding: 12px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .highlight-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .highlight-list li i {
+            color: #d4af37;
+            margin-right: 12px;
+            margin-top: 5px;
+            font-size: 1.1rem;
+        }
+        
+        /* 底部标语 */
+        .slogan-section {
+            text-align: center;
+            margin: 60px 0 40px;
+            padding: 50px 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 100, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slogan-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #3498db, #2ecc71, #d4af37, #e74c3c, #9b59b6, #1abc9c);
+        }
+        
+        .slogan {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            color: #1a3a6e;
+        }
+        
+        .slogan span {
+            color: #d4af37;
+            margin: 0 15px;
+        }
+        
+        .slogan-sub {
+            font-size: 1.3rem;
+            color: #4a6582;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 900px) {
+            .features-grid {
+                grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            }
+            
+            .main-title {
+                font-size: 2.4rem;
+            }
+            
+            .slogan {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .slogan {
+                font-size: 1.7rem;
+            }
+            
+            .slogan-sub {
+                font-size: 1.1rem;
+            }
+            
+            .card-title {
+                font-size: 1.4rem;
+            }
+        }
+        
+        /* 卡片颜色 */
+        .color-1 { background: linear-gradient(135deg, #3498db, #2c77ce); }
+        .color-2 { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+        .color-3 { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .color-4 { background: linear-gradient(135deg, #e67e22, #d35400); }
+        .color-5 { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .color-6 { background: linear-gradient(135deg, #1abc9c, #16a085); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="main-title">智能软件资产全周期管理解决方案</h1>
+            <p class="subtitle">通过先进的技术手段实现软件资产的精细化管理，降低企业成本，提高资源利用率，确保合规使用，全方位提升IT管理效能</p>
+        </header>
+        
+        <div class="features-grid">
+            <!-- 控制成本 -->
+            <div class="feature-card">
+                <div class="card-icon color-1">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="card-title">控制成本</h3>
+                <div class="card-description">
+                    基于软件使用数据分析，制定精准采购计划
+                    <span>减少不必要的软件开支，优化IT预算分配</span>
+                </div>
+            </div>
+            
+            <!-- 效能提升 -->
+            <div class="feature-card">
+                <div class="card-icon color-2">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h3 class="card-title">效能提升</h3>
+                <div class="card-description">
+                    浮动许可证智能回收与循环利用
+                    <span>提高许可证稼动率至85%以上，最大化资源价值</span>
+                </div>
+            </div>
+            
+            <!-- 使用管制 -->
+            <div class="feature-card">
+                <div class="card-icon color-3">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="card-title">使用管制</h3>
+                <div class="card-description">
+                    实时监控软件使用时长与行为
+                    <span>防止非授权使用，确保资源合理分配</span>
+                </div>
+            </div>
+            
+            <!-- 企业软件商城 -->
+            <div class="feature-card">
+                <div class="card-icon color-4">
+                    <i class="fas fa-store"></i>
+                </div>
+                <h3 class="card-title">企业软件商城</h3>
+                <div class="card-description">
+                    支持自助安装与远程推送
+                    <span>降低IT运维成本30%，防止随意安装软件</span>
+                </div>
+            </div>
+            
+            <!-- 合规性审计 -->
+            <div class="feature-card">
+                <div class="card-icon color-5">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3 class="card-title">合规性审计</h3>
+                <div class="card-description">
+                    自动扫描与识别非合规软件
+                    <span>规避侵权风险，确保100%合规使用</span>
+                </div>
+            </div>
+            
+            <!-- 云端授权管理 -->
+            <div class="feature-card">
+                <div class="card-icon color-6">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h3 class="card-title">云端授权管理</h3>
+                <div class="card-description">
+                    Adobe等云端授权使用跟踪
+                    <span>终端使用行为审计与优化建议</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="highlights-section">
+            <h2 class="section-title">方案核心优势</h2>
+            
+            <div class="highlight-container">
+                <div class="highlight-card">
+                    <h3><i class="fas fa-lightbulb"></i> 功能亮点</h3>
+                    <ul class="highlight-list">
+                        <li><i class="fas fa-check"></i> 智能许可证回收系统，自动回收闲置资源</li>
+                        <li><i class="fas fa-check"></i> 多维度使用分析报表，支持决策制定</li>
+                        <li><i class="fas fa-check"></i> 实时监控告警机制，防止资源滥用</li>
+                        <li><i class="fas fa-check"></i> 自动化合规扫描，降低法律风险</li>
+                        <li><i class="fas fa-check"></i> 自定义审批流程，规范软件安装</li>
+                    </ul>
+                </div>
+                
+                <div class="highlight-card">
+                    <h3><i class="fas fa-chart-line"></i> 实施效益</h3>
+                    <ul class="highlight-list">
+                        <li><i class="fas fa-arrow-down"></i> 软件采购成本降低25%-40%</li>
+                        <li><i class="fas fa-arrow-up"></i> 许可证利用率提升至85%以上</li>
+                        <li><i class="fas fa-user-cog"></i> IT运维工作量减少30%</li>
+                        <li><i class="fas fa-shield-alt"></i> 100%软件使用合规保障</li>
+                        <li><i class="fas fa-bolt"></i> 云端资源使用效率提升50%</li>
+                    </ul>
+                </div>
+                
+                <div class="highlight-card">
+                    <h3><i class="fas fa-cogs"></i> 技术特性</h3>
+                    <ul class="highlight-list">
+                        <li><i class="fas fa-database"></i> 基于大数据分析引擎</li>
+                        <li><i class="fas fa-robot"></i> AI驱动的资源优化算法</li>
+                        <li><i class="fas fa-cloud"></i> 支持混合云部署架构</li>
+                        <li><i class="fas fa-sync"></i> 实时数据同步技术</li>
+                        <li><i class="fas fa-lock"></i> 企业级安全加密保障</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slogan-section">
+            <div class="slogan">精细管控 <span>·</span> 降本增效 <span>·</span> 合规护航</div>
+            <p class="slogan-sub">全方位企业软件资产管理解决方案，助力企业数字化转型，提升IT资源管理效率</p>
+        </div>
+    </div>
+
+    <script>
+        // 添加卡片悬停动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.feature-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-15px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // 添加滚动动画
+            const observerOptions = {
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // 观察所有卡片
+            document.querySelectorAll('.feature-card, .highlight-card').forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
